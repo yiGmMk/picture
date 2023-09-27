@@ -2,6 +2,7 @@ package logic
 
 import (
 	"context"
+	"encoding/base64"
 	"encoding/json"
 	"os"
 
@@ -34,6 +35,12 @@ func (l *ReceiveImgLogic) ReceiveImg(req *types.ImgReq) (resp *types.ImgRes, err
 	_ = os.WriteFile(uid+"req.json", content, os.FileMode(0777))
 	_ = os.WriteFile(uid+"req.chassisPhoto", []byte(req.ChassisPhoto), os.FileMode(0777))
 	_ = os.WriteFile(uid+"req.vehiclePhoto", []byte(req.VehiclePhoto), os.FileMode(0777))
+	if req.ChassisPhoto != "" {
+		imgContent, err := base64.StdEncoding.DecodeString(req.ChassisPhoto)
+		if err != nil {
+			_ = os.WriteFile(uid+"chassisPhoto.png", imgContent, os.FileMode(0777))
+		}
+	}
 	l.Logger.Infof("uid:%s,req=%s", uid, content)
 	return
 }
