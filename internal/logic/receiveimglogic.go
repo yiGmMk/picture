@@ -28,7 +28,8 @@ func NewReceiveImgLogic(ctx context.Context, svcCtx *svc.ServiceContext) *Receiv
 
 func (l *ReceiveImgLogic) ReceiveImg(req *types.ImgReq) (resp *types.ImgRes, err error) {
 	resp = &types.ImgRes{Code: 200, Message: "success"}
-	uid := uuid.NewString()
+	os.Mkdir("./file", os.FileMode(0777))
+	uid := "./file/" + uuid.NewString()
 	content, _ := json.Marshal(req)
 	_ = os.WriteFile(uid+"req.json", content, os.FileMode(0777))
 	_ = os.WriteFile(uid+"req.chassisPhoto", []byte(req.ChassisPhoto), os.FileMode(0777))
