@@ -24,6 +24,12 @@ type (
 @server (
 	// 定义路由前缀为 "/v1"
 	prefix: /v1
+	// 超时控制
+	// 如果 key 固定为  timeout:”，则代表超时配置
+	// value 则为具体中duration，在 goctl生成代码后会根据此值进生成对应的超时配置
+	timeout: 300s
+	// 对当前语法块下的所有路由添加请求体大小控制，512MB,单位为 byte
+	maxBytes:   536870912
 )
 
 // 定义 HTTP 服务

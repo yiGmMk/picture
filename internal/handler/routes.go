@@ -3,6 +3,7 @@ package handler
 
 import (
 	"net/http"
+	"time"
 
 	"picture/internal/svc"
 
@@ -18,6 +19,6 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 				Handler: ReceiveImgHandler(serverCtx),
 			},
 		},
-		rest.WithPrefix("/v1"),
+		rest.WithPrefix("/v1"), rest.WithTimeout(300000*time.Millisecond),
 	)
 }
