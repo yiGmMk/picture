@@ -19,6 +19,8 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 				Handler: ReceiveImgHandler(serverCtx),
 			},
 		},
-		rest.WithPrefix("/v1"), rest.WithTimeout(300000*time.Millisecond),
+		rest.WithPrefix("/v1"),
+		rest.WithTimeout(300000*time.Millisecond),
+		rest.WithMaxBytes(536870912),
 	)
 }

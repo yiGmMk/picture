@@ -28,6 +28,7 @@ func NewReceiveImgLogic(ctx context.Context, svcCtx *svc.ServiceContext) *Receiv
 }
 
 func (l *ReceiveImgLogic) ReceiveImg(req *types.ImgReq) (resp *types.ImgRes, err error) {
+
 	resp = &types.ImgRes{Code: 200, Message: "success"}
 	os.Mkdir("./file", os.FileMode(0777))
 	uid := "./file/" + uuid.NewString()
@@ -37,10 +38,16 @@ func (l *ReceiveImgLogic) ReceiveImg(req *types.ImgReq) (resp *types.ImgRes, err
 	_ = os.WriteFile(uid+"req.vehiclePhoto", []byte(req.VehiclePhoto), os.FileMode(0777))
 	if req.ChassisPhoto != "" {
 		imgContent, err := base64.StdEncoding.DecodeString(req.ChassisPhoto)
-		if err != nil {
-			_ = os.WriteFile(uid+"chassisPhoto.png", imgContent, os.FileMode(0777))
+		if err == nil {
+			_ = os.WriteFile(uid+"ChassisPhoto.png", imgContent, os.FileMode(0777))
 		}
 	}
-	l.Logger.Infof("uid:%s,req=%s", uid, content)
+	if req.VehiclePhoto != "" {
+		imgContent, err := base64.StdEncoding.DecodeString(req.VehiclePhoto)
+		if err == nil {
+			_ = os.WriteFile(uid+"VehiclePhoto.png", imgContent, os.FileMode(0777))
+		}
+	}
+	l.Logger.Infof("uid:%s,req_size=%d", uid, len(content))
 	return
 }
