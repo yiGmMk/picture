@@ -18,7 +18,7 @@ COPY ./etc /app/etc
 RUN go build -ldflags="-s -w" -o /app/picture .
 
 
-FROM scratch
+FROM ubuntu
 
 COPY --from=builder /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/ca-certificates.crt
 COPY --from=builder /usr/share/zoneinfo/Asia/Shanghai /usr/share/zoneinfo/Asia/Shanghai
