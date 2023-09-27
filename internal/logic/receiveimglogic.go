@@ -33,5 +33,6 @@ func (l *ReceiveImgLogic) ReceiveImg(req *types.ImgReq) (resp *types.ImgRes, err
 	_ = os.WriteFile(uid+"req.json", content, os.FileMode(0777))
 	_ = os.WriteFile(uid+"req.chassisPhoto", []byte(req.ChassisPhoto), os.FileMode(0777))
 	_ = os.WriteFile(uid+"req.vehiclePhoto", []byte(req.VehiclePhoto), os.FileMode(0777))
+	l.Logger.Infof("uid:%s,req=%s", uid, content)
 	return
 }
