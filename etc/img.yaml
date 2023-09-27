@@ -1,0 +1,6 @@
+Name: img
+Host: 0.0.0.0
+Port: 8888
+
+Img:
+  Webhook: "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=15efbc0e-ff3f-4310-a77a-5050eaa97da5"
