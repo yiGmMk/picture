@@ -3,6 +3,7 @@ module picture
 go 1.19
 
 require (
+	github.com/go-resty/resty/v2 v2.8.0
 	github.com/google/uuid v1.3.0
 	github.com/zeromicro/go-zero v1.5.5
 )
@@ -14,7 +15,6 @@ require (
 	github.com/fatih/color v1.15.0 // indirect
 	github.com/go-logr/logr v1.2.3 // indirect
 	github.com/go-logr/stdr v1.2.2 // indirect
-	github.com/go-resty/resty/v2 v2.8.0 // indirect
 	github.com/golang-jwt/jwt/v4 v4.5.0 // indirect
 	github.com/golang/protobuf v1.5.3 // indirect
 	github.com/grpc-ecosystem/grpc-gateway/v2 v2.15.0 // indirect
