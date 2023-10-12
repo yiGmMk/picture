@@ -12,6 +12,24 @@ type (
 		Code    int    `json:"code"`
 		Message string `json:"message"`
 	}
+
+	PositionReq {
+		DeviceType   string  `form:"device_type,optional"`
+		Imei         string  `form:"imei,optional"`
+		TimeBeginStr string  `form:"time_begin_str,optional"`
+		TimeBegin    string  `form:"time_begin,optional"`
+		IsReply      bool    `form:"is_reply,optional"`
+		IsTrack      bool    `form:"is_track,optional"`
+		City         string  `form:"city,optional"`
+		Address      string  `form:"address,optional"`
+		Lon          float64 `form:"lon,optional"`
+		Lat          float64 `form:"lat,optional"`
+		Type         int     `form:"type,optional"`
+	}
+	PositionRes {
+		Code    int    `json:"code"`
+		Message string `json:"message"`
+	}
 )
 // 定义 HTTP 服务
 // @server 语法块主要用于控制对 HTTP 服务生成时 meta 信息，目前支持功能有：
@@ -43,4 +61,8 @@ service img {
 	// 请求体为 LoginReq
 	// 响应体为 LoginResp，响应体必须有 returns 关键字修饰
 	post /car/img (ImgReq) returns (ImgRes)
+
+	@handler Position
+	// curl -X POST -H 'Content-Type: application/x-www-form-urlencoded' -d "lon=100&lat=100" 'http://localhost:8888/v1/position'
+	post /position (PositionReq)returns(PositionRes)
 }

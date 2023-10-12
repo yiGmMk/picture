@@ -18,6 +18,11 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 				Path:    "/car/img",
 				Handler: ReceiveImgHandler(serverCtx),
 			},
+			{
+				Method:  http.MethodPost,
+				Path:    "/position",
+				Handler: PositionHandler(serverCtx),
+			},
 		},
 		rest.WithPrefix("/v1"),
 		rest.WithTimeout(300000*time.Millisecond),
